@@ -60,37 +60,55 @@ Functionality:
 
   Libraries Used: diffusers, transformers, PIL, torch.
 
+  4)LangGraph.ipynb
+     
+     Purpose: Converts a text prompt and crawls the url given for Q&A.
+
+  Functionality:
+
+    Accepts user-generated.
+
+    Loads a Transformer.
+
+    Loads the url and converse basic Q&A.
+
+  Ideal for: Visualizing agent decisions, environments, or scenarios.
+
+  Libraries Used: diffusers, transformers, PIL, torch.
+     
+
 🖼️ Media Files
-4)generated_image.png
 
- Description: An AI-generated landscape image featuring a the prompt generated (mountain scene for me).
+  5)generated_image.png
 
- Usage:
+     Description: An AI-generated landscape image featuring a the prompt generated (mountain scene for me).
 
-  Can be used as input for image captioning.
+     Usage:
 
-  Used as visual context for image-to-text or image-based reasoning agents.
+        Can be used as input for image captioning.
 
-Suggested Workflow: Pass it into a BLIP captioning model → use output as prompt for image generation agent.
+        Used as visual context for image-to-text or image-based reasoning agents.
+
+      Suggested Workflow: Pass it into a BLIP captioning model → use output as prompt for image generation agent.
 
 
 🧰 Text Files
 
-5)README.md
+  6)README.md
 
-  Description: The main documentation for this Agentic AI Practice Repository.
+     Description: The main documentation for this Agentic AI Practice Repository.
 
-  Contents:
+     Contents:
 
-   Overview of agentic AI.
+       Overview of agentic AI.
 
-   Setup instructions.
+       Setup instructions.
 
-   Performance benchmarks of different models.
+       Performance benchmarks of different models.
 
-   Detailed description of machine learning and agent-based scripts.
+       Detailed description of machine learning and agent-based scripts.
 
-  Usage: Serves as the primary guide for users exploring the repo.
+     Usage: Serves as the primary guide for users exploring the repo.
 
 
 
@@ -134,8 +152,6 @@ Get started with these easy steps:
         * **Option 2:** Organize your data directory structure so that it aligns with the file paths specified in the scripts.
 
 ## 🚀 Usage Instructions
-
-
 
 * **Working with the Jupyter Notebook:**
 
