@@ -327,7 +327,7 @@ Answer: Here are some general science fiction persona descriptions based on comm
   
   Version 1:Overall Score: 70.0% (14/19 correct)
 
-  Version 2:Overall Score: 80.0% (15/19 correct)
+  Version 2:Overall Score: 80.0% (16/19 correct)
 
 ## 📌 Important Considerations
 
