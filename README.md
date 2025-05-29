@@ -325,7 +325,8 @@ Answer: Here are some general science fiction persona descriptions based on comm
     ```
 4)GAIA BENCHMARK:
   
-  Overall Score: 70.0% (14/19 correct)
+  Version 1:Overall Score: 70.0% (14/19 correct)
+  Version 2:Overall Score: 70.0% (14/19 correct)
 
 ## 📌 Important Considerations
 
