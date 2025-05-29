@@ -221,7 +221,7 @@ Get started with these easy steps:
     Install the necessary Python packages using pip. While it's best to check each script for its exact requirements, a general installation command is provided below:
 
     ```bash
-    pip install huggingface_hub ipywidgets diffusers transformers accelerate torch helium smolagents smolagents[openai] llama-index llama-index-vector-stores-chroma llama-index-llms-huggingface-api llama-index-embeddings-huggingface jupyter
+    pip install huggingface_hub ipywidgets diffusers transformers accelerate torch helium smolagents smolagents[openai] llama-index llama-index-vector-stores-chroma llama-index-llms-huggingface-api llama-index-embeddings-huggingface jupyter youtube_transcript_api langchain_tavily pandas csv 
     ```
 
     * **Note:** Some scripts might have specific version requirements for certain libraries. If you encounter any issues, please refer to the comments within the respective script files.
