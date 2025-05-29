@@ -75,7 +75,88 @@ Functionality:
   Ideal for: Visualizing agent decisions, environments, or scenarios.
 
   Libraries Used: diffusers, transformers, PIL, torch.
-     
+
+🖼️ Folders:
+
+  1)RAG Practice
+
+    1.1)app.py:
+       Purpose:Used as the main file to run the agent using gradio UI.
+
+  Functionality:
+
+    Accepts user-generated prompt.
+
+    Uses different files.
+
+    Gives output
+
+  Ideal for: Visualizing agent decisions, environments, or scenarios.
+
+  Libraries Used:Smolagents,Gradio,random
+
+   1.2)retirever.py
+   Purpose:Used to reterve data from the dataset
+
+  Functionality:
+
+    opens dataset 
+
+    Searches the dataset
+
+    Extract the data
+
+  Ideal for:Extracting data
+
+  Libraries Used:Smolagents,langachain,datasets
+
+  1.3)tools.py
+   Purpose:Contains tools and uses them based on the prompt.
+
+  Functionality:
+
+    Takes dat from reterver.py.
+
+    Choose approaite tool.
+
+    Process and give output to app.py
+
+  Ideal for:used for tool usage
+
+  Libraries Used: smolagents,hugging_face
+
+2)Gaia Benchmark
+
+    1.1)app.py:
+       Purpose:Used as the main file to run the agent using gradio UI.
+
+  Functionality:
+
+    Accepts user-generated prompt(questions from the API).
+
+    Uses different files.
+
+    Gives output.
+
+
+  Libraries Used:Smolagents,Gradio,random,csv,pandas
+
+   1.2)agent.py
+   Purpose:Used as the agentic AI of the project.
+
+  Functionality:
+
+    Takes prompts and files(If any).
+
+    Connects to open ai api(GPT-4.1)
+
+    uses the nessacry tools and gives output.
+
+  Ideal for:Extracting data,API
+
+  Libraries Used:langchain,langgraph,youtube_transcript_api,base64,httpx,os,dotenv
+
+           
 
 🖼️ Media Files
 
