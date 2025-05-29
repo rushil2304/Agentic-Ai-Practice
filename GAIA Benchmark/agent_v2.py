@@ -145,7 +145,7 @@ def build_graph():
     """
     Builds a LangGraph agent with a base ChatOpenAI LLM, tools, and tool routing.
     """
-    llm = ChatOpenAI(model="gpt-4.1", temperature=0, max_retries=2)
+    llm = ChatOpenAI(model="gpt-4.1",temperature=0, max_retries=2)
     llm_with_tools = llm.bind_tools(tools, strict=True)
 
     def assistant(state: MessagesState):
