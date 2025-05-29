@@ -133,6 +133,9 @@ You are a general AI assistant. I will ask you a question.
 First, provide a step-by-step explanation of your reasoning to arrive at the answer.
 Then, respond with your final answer in a single line, formatted as follows: "FINAL ANSWER: [YOUR FINAL ANSWER]".
 [YOUR FINAL ANSWER] should be a number, a string, or a comma-separated list of numbers and/or strings, depending on the question.
+If the answer is a number, do not use commas or units (e.g., $, %) unless specified.
+If the answer is a string, do not use articles or abbreviations (e.g., for cities), and write digits in plain text unless specified.
+If the answer is a comma-separated list, apply the above rules for each element based on whether it is a number or a string.
 """
 system_message = SystemMessage(content=system_prompt)
 
@@ -195,12 +198,12 @@ if __name__ == "__main__":
     agent = build_graph()
 
     question = """
-"Hi, I was out sick from my classes on Friday, so I'm trying to figure out what I need to study for my Calculus mid-term next week. My friend from class sent me an audio recording of Professor Willowbrook giving out the recommended reading for the test, but my headphones are broken :(\n\nCould you please listen to the recording for me and tell me the page numbers I'm supposed to go over? I've attached a file called Homework.mp3 that has the recording. Please provide just the page numbers as a comma-delimited list. And please provide the list in ascending order."
+"give me conversion rate of dollars to euros for 100 dollars"
 """
 
     content_urls = {
         "image": None,
-        "audio": "https://agents-course-unit4-scoring.hf.space/files/1f975693-876d-457b-a649-393859e79bf3"
+        "audio": None
     }
     
     # Prepare message content with optional audio/image
