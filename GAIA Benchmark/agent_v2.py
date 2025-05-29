@@ -18,7 +18,7 @@ load_dotenv(rf"C:\Users\Rushil\Desktop\training\Agentic AI\FinalProject\Final_As
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 
-# -------------------- Tool Definitions --------------------
+
 
 @tool
 def add(a: int, b: int) -> int:
@@ -80,7 +80,7 @@ def youtube_transcript(url: str) -> str:
 
 tools = [add, substract, multiply, divide, mod, wiki_search, arvix_search, web_search, open_web_page, youtube_transcript]
 
-# -------------------- System Prompt --------------------
+
 
 system_prompt = """
 You are a general AI assistant. I will ask you a question.
@@ -90,7 +90,7 @@ Then, respond with your final answer in a single line, formatted as follows: "FI
 """
 system_message = SystemMessage(content=system_prompt)
 
-# -------------------- LangGraph Agent Builder --------------------
+
 
 def build_graph():
     """
@@ -111,7 +111,7 @@ def build_graph():
     builder.add_edge("tools", "assistant")
     return builder.compile()
 
-# -------------------- Whisper Transcription --------------------
+
 
 def transcribe_audio_from_url(url: str) -> str:
     """
@@ -143,7 +143,7 @@ def transcribe_audio_from_url(url: str) -> str:
     return response.json().get("text", "")
 
 
-# -------------------- Main Execution --------------------
+
 
 if __name__ == "__main__":
     agent = build_graph()
