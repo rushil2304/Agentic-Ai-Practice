@@ -22,46 +22,92 @@ TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 
 @tool
 def add(a: int, b: int) -> int:
-    """Returns the sum of a and b."""
+    """
+    Add b to a.
+    
+    Args:
+        a: first int number
+        b: second int number
+    """
     return a + b
 
 @tool
 def substract(a: int, b: int) -> int:
-    """Returns the result of subtracting b from a."""
+    """
+    Subtract b from a.
+    
+    Args:
+        a: first int number
+        b: second int number
+    """
     return a - b
 
 @tool
 def multiply(a: int, b: int) -> int:
-    """Returns the product of a and b."""
+    """
+    Multiply a by b.
+    
+    Args:
+        a: first int number
+        b: second int number
+    """
     return a * b
 
 @tool
 def divide(a: int, b: int) -> float:
-    """Returns the result of dividing a by b. Raises error on divide by zero."""
+    """
+    Divide a by b.
+    
+    Args:
+        a: first int number
+        b: second int number
+    """
     if b == 0:
         raise ValueError("Can't divide by zero.")
     return a / b
 
 @tool
 def mod(a: int, b: int) -> int:
-    """Returns the remainder when a is divided by b."""
+    """
+    Remainder of a devided by b.
+    
+    Args:
+        a: first int number
+        b: second int number
+    """
     return a % b
 
 @tool
 def wiki_search(query: str) -> str:
-    """Searches Wikipedia for a query and returns trimmed content from top documents."""
+    """
+    Search Wikipedia.
+    
+    Args:
+        query: what to search for
+    """
     search_docs = WikipediaLoader(query=query, load_max_docs=3).load()
     return {"wiki_results": "".join([f'<START source="{doc.metadata["source"]}">{doc.page_content[:1000]}<END>' for doc in search_docs])}
 
 @tool
 def arvix_search(query: str) -> str:
-    """Searches ArXiv for a query and returns trimmed content from top documents."""
+    """
+    Search arXiv which is online archive of preprint and postprint manuscripts 
+    for different fields of science.
+    
+    Args:
+        query: what to search for
+    """
     search_docs = ArxivLoader(query=query, load_max_docs=3).load()
     return {"arvix_results": "".join([f'<START source="{doc.metadata["source"]}">{doc.page_content[:1000]}<END>' for doc in search_docs])}
 
 @tool
 def web_search(query: str) -> str:
-    """Searches the web using Tavily and returns relevant content from top 3 results."""
+    """
+    Search WEB.
+    
+    Args:
+        query: what to search for
+    """
     search_docs = TavilySearchResults(max_results=3, include_answer=True).invoke({"query": query})
     return {"web_results": "".join([f'<START source="{doc["url"]}">{doc["content"][:1000]}<END>' for doc in search_docs])}
 
@@ -73,7 +119,12 @@ def open_web_page(url: str) -> str:
 
 @tool
 def youtube_transcript(url: str) -> str:
-    """Returns transcript of a YouTube video using its URL."""
+    """
+    Open web page and get its content.
+    
+    Args:
+        url: web page url in ""
+    """
     video_id = url.partition("https://www.youtube.com/watch?v=")[2]
     transcript = YouTubeTranscriptApi.get_transcript(video_id)
     return {"youtube_transcript": " ".join([item["text"] for item in transcript])}
