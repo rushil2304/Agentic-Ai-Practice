@@ -323,8 +323,9 @@ Answer: Here are some general science fiction persona descriptions based on comm
 5. **The Alien Diplomat**: A representative from an alien species who seeks to establish peaceful relations with Earth, often dealing with cultural misunderstandings and political
     
     ```
-
-
+4)GAIA BENCHMARK:
+  
+  Overall Score: 70.0% (14/19 correct)
 
 ## 📌 Important Considerations
 
