@@ -119,12 +119,7 @@ def open_web_page(url: str) -> str:
 
 @tool
 def youtube_transcript(url: str) -> str:
-    """
-    Open web page and get its content.
-    
-    Args:
-        url: web page url in ""
-    """
+    """Returns transcript of a YouTube video using its URL."""
     video_id = url.partition("https://www.youtube.com/watch?v=")[2]
     transcript = YouTubeTranscriptApi.get_transcript(video_id)
     return {"youtube_transcript": " ".join([item["text"] for item in transcript])}
