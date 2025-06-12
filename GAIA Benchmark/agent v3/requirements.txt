@@ -1,0 +1,17 @@
+gradio
+requests
+smolagents
+dotenv
+openai
+langchain
+openpyxl
+pandas
+langchain_community
+rank_bm25
+faster_whisper
+easyocr
+pillow
+numpy
+paddleocr
+paddlepaddle
+wikipedia

@@ -11,6 +11,7 @@ from langgraph.graph import START, StateGraph, MessagesState
 from langgraph.prebuilt import ToolNode
 from langgraph.prebuilt import tools_condition
 import base64
+import tempfile
 import httpx
 import os
 
@@ -149,6 +150,36 @@ def youtube_transcript(url: str) -> str:
     transcript_text = " ".join([item["text"] for item in transcript])
     return {"youtube_transcript": transcript_text}
 
+@tool
+def transcribe_audio_from_url(url: str) -> str:
+    """
+    Downloads and transcribes an audio file from a URL using OpenAI Whisper API.
+    
+    Args:
+        url (str): Publicly accessible URL of an audio file (.mp3, .wav, .ogg, etc.)
+    
+    Returns:
+        str: Transcribed text from the audio.
+    """
+    headers = {"Authorization": f"Bearer {OPENAI_API_KEY}"}
+    suffix = os.path.splitext(url)[-1] or ".mp3"
+
+    with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+        tmp.write(httpx.get(url).content)
+        tmp_path = tmp.name
+
+    # Open the file separately so it's not locked by the previous context
+    with open(tmp_path, "rb") as f:
+        response = httpx.post(
+            "https://api.openai.com/v1/audio/transcriptions",
+            headers=headers,
+            files={"file": (os.path.basename(tmp_path), f, "audio/mpeg")},
+            data={"model": "whisper-1"}
+        )
+
+    os.remove(tmp_path)  
+    return response.json().get("text", "")
+
 
 tools = [
     add,
@@ -161,6 +192,7 @@ tools = [
     web_search,
     open_web_page,
     youtube_transcript,
+    transcribe_audio_from_url,
 ]
 
 # System prompt
@@ -210,13 +242,15 @@ if __name__ == "__main__":
     agent = build_graph()
     
     question = """
-Review the chess position provided in the image. It is black's turn. 
-Provide the correct next move for black which guarantees a win. 
-Please provide your response in algebraic notation.
+"Hi, I'm making a pie but I could use some help with my shopping list. I have everything I need for the crust, but I'm not sure about the filling. I got the recipe from my friend Aditi, but she left it as a voice memo and the speaker on my phone is buzzing so I can't quite make out what she's saying. Could you please listen to the recipe and list all of the ingredients that my friend described? I only want the ingredients for the filling, as I have everything I need to make my favorite pie crust. I've attached the recipe as Strawberry pie.mp3.
+
+In your response, please only list the ingredients, not any measurements. So if the recipe calls for ""a pinch of salt"" or ""two cups of ripe strawberries"" the ingredients on the list would be ""salt"" and ""ripe strawberries"".
+
+Please format your response as a comma separated list of ingredients. Also, please alphabetize the ingredients."
 """
     content_urls = {
-        "image": "https://agents-course-unit4-scoring.hf.space/files/cca530fc-4052-43b2-b130-b30968d8aa44",
-        "audio": None
+        "image": None,
+        "audio": "https://agents-course-unit4-scoring.hf.space/files/99c9cc74-fdc8-46c6-8f8d-3ce2d3bfeea3"
     }
     
     # Define user message and add all the content
